@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.photonvision.PhotonCamera;
 import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
+import org.photonvision.targeting.TargetCorner;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -61,12 +62,33 @@ public class PhotonVision extends SubsystemBase {
     return target.getFiducialId();
   }
 
-  public getTx(PhotonTrackedTarget target){
-
+  /**
+   * Acts as the PhotonVision equivalent of Limelight::getTx()
+  @return Amount of pixels between center of "screen" and center of bounding box horizontally.
+  * @implNote TODO: it only returns center of bounding box rn, make it so that it returns the diff
+  */
+  public double getTx(){
+      PhotonTrackedTarget target = getBestTarget();
+      List<TargetCorner> corners = target.getCorners();
+      double leftCorner = corners.get(0).x;
+      double rightCorner = corners.get(3).x;
+      
+      return (leftCorner-rightCorner)/2;
   }
+  /**
+   * Acts as the PhotonVision equivalent of Limelight::getTy()
+  @return Amount of pixels between center of "screen" and center of bounding box vertically.
+  * @implNote TODO: it only returns center of bounding box rn, make it so that it returns the diff
+  */
+  public double getTy(){
 
-  public getTy(PhotonTrackedTarget target){
-    
+    PhotonTrackedTarget target = getBestTarget();
+    List<TargetCorner> corners = target.getCorners();
+      
+    double leftCorner = corners.get(0).y;
+    double rightCorner = corners.get(3).y;
+
+    return (leftCorner-rightCorner)/2;
   }
 
   @Override
