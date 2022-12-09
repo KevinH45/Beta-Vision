@@ -3,7 +3,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.Constants;
+import static frc.robot.Constants.PhotonVisionConstants.*; 
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.PhotonVision;
 
@@ -12,7 +12,7 @@ public class CenterOnTarget extends PIDCommand {
 
   public CenterOnTarget(DriveTrain driveTrain, PhotonVision photonVision) {
     super(
-        new PIDController(Constants.kP, Constants.kI, Constants.kD),
+        new PIDController(kP, kI, kD),
         photonVision::getTx,
         0.0,
         output -> driveTrain.tankDrive(-output, -output),

@@ -12,4 +12,17 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+
+    public static final class PhotonVisionConstants{
+
+        public static final double CENTER_X = 1280/2;
+        public static final double CENTER_Y = 720/2;
+        public static final String CAMERA_NAME = "camera";
+        public static final double kP = 0.0;
+        public static final double kI = 0.0;
+        public static final double kD = 0.0;
+    
+    }
+
+}
