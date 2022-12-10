@@ -13,11 +13,11 @@ import org.photonvision.targeting.TargetCorner;
 
 import java.util.List;
 import java.util.ArrayList;
-import frc.robot.Constants; 
+import static frc.robot.Constants.PhotonVisionConstants.*; 
 
 public class PhotonVision extends SubsystemBase {
 
-  private final PhotonCamera camera = new PhotonCamera(Constants.CAMERA);
+  private final PhotonCamera camera = new PhotonCamera(CAMERA_NAME);
   private List<PhotonTrackedTarget> targets = new ArrayList<>();
   private PhotonTrackedTarget bestTarget;
 
@@ -65,7 +65,6 @@ public class PhotonVision extends SubsystemBase {
   /**
    * Acts as the PhotonVision equivalent of Limelight::getTx()
   @return Amount of pixels between center of "screen" and center of bounding box horizontally.
-  * @implNote TODO: it only returns center of bounding box rn, make it so that it returns the diff
   */
   public double getTx(){
       PhotonTrackedTarget target = getBestTarget();
@@ -73,12 +72,11 @@ public class PhotonVision extends SubsystemBase {
       double leftCorner = corners.get(0).x;
       double rightCorner = corners.get(3).x;
       
-      return (leftCorner-rightCorner)/2;
+      return (leftCorner-rightCorner)/2 - CENTER_X;
   }
   /**
    * Acts as the PhotonVision equivalent of Limelight::getTy()
   @return Amount of pixels between center of "screen" and center of bounding box vertically.
-  * @implNote TODO: it only returns center of bounding box rn, make it so that it returns the diff
   */
   public double getTy(){
 
@@ -88,7 +86,7 @@ public class PhotonVision extends SubsystemBase {
     double leftCorner = corners.get(0).y;
     double rightCorner = corners.get(3).y;
 
-    return (leftCorner-rightCorner)/2;
+    return (leftCorner-rightCorner)/2 - CENTER_Y;
   }
 
   @Override
