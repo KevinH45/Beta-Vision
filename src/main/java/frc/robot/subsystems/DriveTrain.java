@@ -82,24 +82,6 @@ public class DriveTrain extends SubsystemBase {
     // forward
   }
 
-  /*
-  private double computeSpeed(double currentSpeed, double desiredSpeed) {
-    if ((desiredSpeed > 0 && desiredSpeed > currentSpeed)
-        || (desiredSpeed < 0 && desiredSpeed < currentSpeed)) {
-      if (Math.abs(desiredSpeed - currentSpeed) >= 0.01) {
-        if (currentSpeed > desiredSpeed) {
-          return currentSpeed - 0.02;
-        } else {
-          return currentSpeed + 0.02;
-        }
-      }
-      return desiredSpeed;
-    } else {
-      return desiredSpeed;
-    }
-  }
-  */
-
   public void tankDrive(double leftSpeed, double rightSpeed) {
 
     leftParent.set(leftSpeed * driveTrainRampDown);
